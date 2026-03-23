@@ -32,16 +32,26 @@ const AppContent: React.FC = () => {
   }, [authLoading, profileLoading]);
 
   if (showTimeoutError) {
+    const url = import.meta.env.VITE_SUPABASE_URL || 'NÃO DEFINIDA';
+    const key = import.meta.env.VITE_SUPABASE_ANON_KEY || 'NÃO DEFINIDA';
+
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4 text-center">
         <h2 className="text-xl font-bold text-gray-900 mb-2">Erro de Conexão</h2>
-        <p className="text-gray-600 text-center mb-6">O sistema está demorando muito para responder. Verifique sua internet ou as configurações do banco de dados.</p>
+        <p className="text-gray-600 mb-4">O sistema está demorando muito para responder.</p>
+        
+        <div className="bg-gray-50 p-4 rounded-xl mb-6 text-xs font-mono text-gray-400 break-all max-w-sm">
+          <p className="mb-1">URL: {url.substring(0, 15)}...</p>
+          <p>KEY: {key.substring(0, 15)}...</p>
+        </div>
+
         <button 
           onClick={() => window.location.reload()}
-          className="bg-nubank-purple text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all"
+          className="bg-nubank-purple text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all mb-4"
         >
           Tentar Novamente
         </button>
+        <p className="text-xs text-gray-400">Verifique as chaves na Vercel</p>
       </div>
     );
   }
