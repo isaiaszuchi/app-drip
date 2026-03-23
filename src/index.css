@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nubank-purple: #8A05BE;
+    --nubank-purple-dark: #71049B;
+    --nubank-purple-light: #9C36C3;
+    --nubank-bg: #FFFFFF;
+    --nubank-card-bg: #FFFFFF;
+    --nubank-text: #1A1A1B;
+    --nubank-text-muted: #767676;
+    --nubank-border: #F1F1F4;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--nubank-bg);
+    color: var(--nubank-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--nubank-text);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Nubank Card Style */
+  .nb-card {
+    background-color: var(--nubank-card-bg);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--nubank-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nb-card-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Interactive Elements */
+  .nb-horizontal-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .nb-horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nb-action-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 5.5rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .nb-action-icon:active {
+    transform: scale(0.95);
+  }
+
+  .nb-icon-circle {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background-color: #F8F9FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nubank-text);
+    transition: all 0.2s;
+  }
+
+  .nb-action-icon:hover .nb-icon-circle {
+    background-color: #F1F3F5;
+  }
+
+  .nb-action-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nubank-text);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* Buttons */
+  .btn-nb-primary {
+    background-color: var(--nubank-purple);
+    color: #FFFFFF;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .btn-nb-primary:hover {
+    background-color: var(--nubank-purple-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(138, 5, 190, 0.2);
+  }
+
+  /* Inputs */
+  .nb-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #F1F1F4;
+    padding: 0.875rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    background: transparent;
+    outline: none;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nb-input:focus {
+    border-color: var(--nubank-purple);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
