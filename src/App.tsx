@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { ProfileProvider, useActiveProfile } from './contexts/ProfileContext';
@@ -17,6 +17,34 @@ import ProfilePicker from './pages/ProfilePicker';
 const AppContent: React.FC = () => {
   const { user, loading: authLoading } = useAuth();
   const { activeProfile, loading: profileLoading } = useActiveProfile();
+
+  const [showTimeoutError, setShowTimeoutError] = useState(false);
+
+  useEffect(() => {
+    if (authLoading || profileLoading) {
+      const timer = setTimeout(() => {
+        setShowTimeoutError(true);
+      }, 10000); // 10 seconds
+      return () => clearTimeout(timer);
+    } else {
+      setShowTimeoutError(false);
+    }
+  }, [authLoading, profileLoading]);
+
+  if (showTimeoutError) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+        <h2 className="text-xl font-bold text-gray-900 mb-2">Erro de Conexão</h2>
+        <p className="text-gray-600 text-center mb-6">O sistema está demorando muito para responder. Verifique sua internet ou as configurações do banco de dados.</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="bg-nubank-purple text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all"
+        >
+          Tentar Novamente
+        </button>
+      </div>
+    );
+  }
 
   if (authLoading || profileLoading) {
     return (
