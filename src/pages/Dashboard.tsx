@@ -14,7 +14,6 @@ import {
   Heart,
   Clock,
   LayoutGrid,
-  Calendar,
   CreditCard,
   PieChart as PieChartIcon,
   ChevronDown

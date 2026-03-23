@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import type { Transaction } from '../hooks/useTransactions';
 import { useTransactions } from '../hooks/useTransactions';
 import { useCategories } from '../hooks/useCategories';
-import { useCards } from '../hooks/useCards';
 import { useFamily } from '../hooks/useFamily';
 import { formatCurrency, formatDate } from '../utils/formatters';
 import { 
@@ -32,7 +31,6 @@ const History: React.FC = () => {
   const { transactions, loading, deleteTransaction } = useTransactions();
   const navigate = useNavigate();
   const { categories } = useCategories();
-  const { cards } = useCards();
   const { members } = useFamily();
   
   const [searchTerm, setSearchTerm] = useState('');
