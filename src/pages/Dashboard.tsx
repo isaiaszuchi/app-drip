@@ -25,7 +25,7 @@ import {
   PieChart,
   Pie
 } from 'recharts';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
@@ -37,7 +37,8 @@ const Dashboard: React.FC = () => {
   const { members } = useFamily();
   const { categories } = useCategories();
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string) => router.push(path);
   const [showBalance, setShowBalance] = useState(true);
   
   // Período selecionado (Mês/Ano)

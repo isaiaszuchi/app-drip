@@ -22,7 +22,7 @@ import {
   User as UserIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useRouter, useParams } from 'next/navigation';
 import clsx from 'clsx';
 
 const QuickEntry: React.FC = () => {
@@ -30,8 +30,10 @@ const QuickEntry: React.FC = () => {
   const { cards } = useCards();
   const { members } = useFamily();
   const { transactions, addTransaction, updateTransaction } = useTransactions();
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const router = useRouter();
+  const params = useParams();
+  const id = params?.id as string | undefined;
+  const navigate = (path: string) => router.push(path);
   const isEditing = !!id;
 
   const [tipo, setTipo] = useState<'entrada' | 'saida' | 'reserva'>('saida');

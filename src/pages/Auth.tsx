@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { useNavigate } from 'react-router-dom';
 import { ChevronRight, Globe, HelpCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
 const Auth: React.FC = () => {
@@ -11,7 +11,8 @@ const Auth: React.FC = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string) => router.push(path);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { UserProfile } from '../hooks/useProfiles';
 import { useProfiles } from '../hooks/useProfiles';

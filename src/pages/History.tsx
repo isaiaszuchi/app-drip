@@ -23,13 +23,14 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { format, startOfMonth, endOfMonth, isWithinInterval, parseISO, addMonths, subMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 const History: React.FC = () => {
   const { transactions, loading, deleteTransaction } = useTransactions();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string) => router.push(path);
   const { categories } = useCategories();
   const { members } = useFamily();
   
